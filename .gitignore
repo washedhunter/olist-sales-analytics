@@ -1,0 +1,25 @@
+# --- Secrets: never commit passwords ---
+.env
+
+# --- Data: too big for Git, and anyone can download it from Kaggle (link in README) ---
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# --- Personal study notes: kept on my laptop, not part of the portfolio ---
+LEARNING_LOG.md
+
+# --- Python clutter ---
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# --- Excel / Power BI temporary and lock files ---
+~$*
+*.tmp
+
+# --- Windows / OneDrive clutter ---
+Thumbs.db
+desktop.ini
