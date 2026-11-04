@@ -145,6 +145,12 @@ def main():
         for name, df in tables.items():
             df.to_sql(name, conn, if_exists="append", index=False, method="multi", chunksize=2000)
             print(f"{name:15} {len(df):>9,} rows loaded")
+        # Recreate the analysis view (dropping the tables also drops views built on them)
+        conn.exec_driver_sql((ROOT / "sql" / "03_create_views.sql").read_text())
+        print("delivered_orders view created")
+        # Gather table statistics so PostgreSQL plans fast queries straight after a fresh load
+        conn.exec_driver_sql("ANALYZE")
+        print("Statistics updated (ANALYZE)")
     print("Done.")
 
 
